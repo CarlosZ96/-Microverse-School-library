@@ -1,127 +1,132 @@
-<a name="title"></a>
+<a name="readme-top"></a>
 
-<!-- TITLE -->
+<div align="center">
+  <img src="https://cdn-icons-png.flaticon.com/128/3771/3771417.png" alt="logo" width="140"  height="auto" />
+  <br/>
+  <h3><b>🏷️ Microverse-School-library</b></h3>
 
-# 🏷️ Microverse-School-library
+</div>
+
+# 📗 Table of Contents
+
+- [📖 About the Project](#about-project)
+  - [🛠 Built With](#built-with)
+     - [🚀 Live Demo](#live-demo)
+- [💻 Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Run tests](#run-tests)
+  - [Deployment](#triangular_flag_on_post-deployment)
+- [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
+- [🤝 Contributing](#contributing)
+- [⭐️ Show your support](#support)
+- [🙏 Acknowledgements](#acknowledgements)
+- [📝 License](#license)
+
+<!-- PROJECT DESCRIPTION -->
+
+# Microverse-School-library<a name="about-project"></a>
 
 This is the third project of the fourth module in the **Microverse** program.
 <br/>
 Check the below contents for further details about this project.
+You will create an simplified version of it that allows you to:
 
-<!-- CONTENTS -->
+- Display a list of 6 countries
+- Search country by name
+- See details of a country
 
-# 📗 Contents
-
-- [Description](#description)
-- [Instructions](#instructions)
-- [Authors](#authors)
-- [Future](#future)
-- [Contributions](#contributions)
-- [Support](#support)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
-
-<!-- DESCRIPTION -->
-
-<a name="description"></a>
-
-# 📖 Description
-
-Imagine that you are the librarian of OOP University, and you need a tool to record what books are in the library and who borrows them.
-
-📌 **Tech Stack:**
+## 🛠 Built With <a name="built-with"></a>
 -Built with `Ruby`
 
-📌 **Key Features:**
-- Add new students or teachers.
-- Add new books.
-- Save records of who borrowed a given book and when.
+### Tech Stack <a name="tech-stack"></a>
 
-<p align="right"><a href="#title">back to top</a></p>
+<!-- Features -->
 
-<!-- INSTRUCTIONS -->
+### Key Features <a name="key-features"></a>
+- **Add new students or teachers**
+- **Add new books** .
+- **Save records of who borrowed a given book and when**.
 
-<a name="instructions"></a>
 
-# 🛠️ Instructions
+## 🚀 Live Demo <a name="live-demo"></a>
+
+-Coming soon...
+
+## 💻 Getting Started <a name="getting-started"></a>
 
 To get a local copy up and running, follow these steps.
-Run git clone [https://github.com/CarlosZ96/countries-database](https://github.com/CarlosZ96/-Microverse-School-library)
+Run git clone https://github.com/CarlosZ96/-Microverse-School-library
 
-📌 **Prerequisites:**
-- `PostgreSQL` or any other `SQL` database
-
-📌 **Installation:**
+### Prerequisites
 - Install Ruby on your system
-- Basic Knowledge of Ruby. 
+- Basic Knowledge of Ruby.
 
-<p align="right"><a href="#title">back to top</a></p>
+### Install
+
+git clone https://github.com/CarlosZ96/-Microverse-School-library
+npm install
+
+### Usage
+
+-run
+
+### Deployment
+
+-npm run build
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
 
-<a name="authors"></a>
+## 👥 Authors <a name="authors"></a>
 
-# 👥 Authors
-
-📌 👤 **Carlos Zambrano**
+👤 **Carlos Zambrano**
 
 - GitHub: [@githubhandle](https://github.com/CarlosZ96)
 - Twitter: [@twitterhandle](https://twitter.com/ELZambrano2)
 - LinkedIn: [@linkedinhandle](https://www.linkedin.com/in/carlos-zambrano-845406173/)
 
-<p align="right"><a href="#title">back to top</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- FUTURE -->
 
-<a name="future"></a>
+## 🔭 Future Features <a name="future-features"></a>
 
-# 🔭 Future
+-  **Attractive UI**
+-  **Api**
 
-Some additional features I may implement in the project:
-- [ ] Using `Binary` data types in tables
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<p align="right"><a href="#title">back to top</a></p>
+## 🤝 Contributing <a name="contributing"></a>
 
-<!-- CONTRIBUTIONS -->
+Contributions, issues, and feature requests are welcome!
 
-<a name="contributions"></a>
+Feel free to check the [issues page](../../issues/).
 
-# 🤝🏻 Contributions
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Wish to contribute to this project?
-<br/>
-Contributions, issues, and feature requests are more than welcome!
-<br/>
-Feel free to check the [issues](../../issues) page too.
 
-<p align="right"><a href="#title">back to top</a></p>
+## ⭐️ Show your support <a name="support"></a>
 
-<!-- SUPPORT -->
+If you like this project, you can give a ⭐️ for this repository.
 
-<a name="support"></a>
-
-# ⭐️ Support
-
-Like this project? Show your support by starring!
-
-<p align="right"><a href="#title">back to top</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGEMENTS -->
 
-<a name="acknowledgements"></a>
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+I want thank to  Nelson Sakwa on Behance for the Original design<br>
 
-# 🙏🏻 Acknowledgements
+I want to thank for pressing  https://www.freepik.es/ icons for free. <br>
 
-I thank everyone at **Microverse** for guiding me through this project.
-
-<p align="right"><a href="#title">back to top</a></p>
+I would like to thank Microverse for giving me this wonderful opportunity to work on this project<br>
 
 <!-- LICENSE -->
 
-<a name="license"></a>
+## 📝 License <a name="license"></a>
 
-# 📝 License
+This project is [MIT](./LICENSE) licensed.
 
-This project is [MIT](LICENSE.md) licensed.
-
-<p align="right"><a href="#title">back to top</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
