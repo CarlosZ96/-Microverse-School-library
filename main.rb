@@ -66,3 +66,79 @@ capitalized_person = CapitalizeDecorator.new(person)
 puts capitalized_person.correct_name
 capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
 puts capitalized_trimmed_person.correct_name
+
+class Classroom
+  attr_accessor :label
+  attr_reader :students
+
+  def initialize(label)
+    @label = label
+    @students = []
+  end
+
+  def add_student(student)
+    @students << student
+    student.classroom = self
+  end
+end
+
+class Student
+  attr_accessor :name, :classroom
+  attr_reader :rentals
+
+  def initialize(name)
+    @name = name
+    @classroom = nil
+    @rentals = [] # Initialize the rentals array
+  end
+end
+
+class Book
+  attr_accessor :title, :author
+  attr_reader :rentals
+
+  def initialize(title, author)
+    @title = title
+    @author = author
+    @rentals = [] # Initialize the rentals array
+  end
+end
+
+class Rental
+  attr_accessor :date
+  attr_reader :book, :person
+
+  def initialize(date, book, person)
+    @date = date
+    @book = book
+    @person = person
+    book.rentals << self
+    person.rentals << self
+  end
+end
+
+
+classroom = Classroom.new('Room A')
+
+
+student1 = Student.new('Alice')
+student2 = Student.new('Bob')
+
+classroom.add_student(student1)
+classroom.add_student(student2)
+
+puts "Students in #{classroom.label}: #{classroom.students.map(&:name).join(', ')}"
+
+
+book1 = Book.new('Book 1', 'Author 1')
+book2 = Book.new('Book 2', 'Author 2')
+
+person1 = Student.new('Person 1')
+person2 = Student.new('Person 2')
+
+
+rental1 = Rental.new('2023-10-19', book1, person1)
+rental2 = Rental.new('2023-10-20', book2, person2)
+
+puts "#{person1.name} rented '#{book1.title}' on #{rental1.date}."
+puts "#{person2.name} rented '#{book2.title}' on #{rental2.date}."
