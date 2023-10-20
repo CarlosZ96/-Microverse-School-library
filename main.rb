@@ -67,6 +67,21 @@ puts capitalized_person.correct_name
 capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
 puts capitalized_trimmed_person.correct_name
 
+class Student
+  attr_accessor :name
+  attr_reader :classroom
+
+  def initialize(name)
+    @name = name
+    @classroom = nil
+  end
+
+  def classroom(classroom)
+    @classroom = classroom
+    classroom.students.push(self) unless classroom.students.include?(self)
+  end
+end
+
 class Classroom
   attr_accessor :label
   attr_reader :students
@@ -79,17 +94,6 @@ class Classroom
   def add_student(student)
     @students << student
     student.classroom = self
-  end
-end
-
-class Student
-  attr_accessor :name, :classroom
-  attr_reader :rentals
-
-  def initialize(name)
-    @name = name
-    @classroom = nil
-    @rentals = [] # Initialize the rentals array
   end
 end
 
