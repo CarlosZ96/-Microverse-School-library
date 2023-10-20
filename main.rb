@@ -117,9 +117,7 @@ class Rental
   end
 end
 
-
 classroom = Classroom.new('Room A')
-
 
 student1 = Student.new('Alice')
 student2 = Student.new('Bob')
@@ -129,14 +127,10 @@ classroom.add_student(student2)
 
 puts "Students in #{classroom.label}: #{classroom.students.map(&:name).join(', ')}"
 
-
 book1 = Book.new('Book 1', 'Author 1')
 book2 = Book.new('Book 2', 'Author 2')
-
 person1 = Student.new('Person 1')
 person2 = Student.new('Person 2')
-
-
 rental1 = Rental.new('2023-10-19', book1, person1)
 rental2 = Rental.new('2023-10-20', book2, person2)
 
