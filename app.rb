@@ -1,7 +1,7 @@
 require_relative 'main'
 
 def list_books(books)
-  # Implement the code to list all books
+  books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
 end
 
 def list_people(people)
