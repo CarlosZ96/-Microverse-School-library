@@ -8,9 +8,12 @@ class Person < Nameable
   attr_reader :id
   attr_accessor :name, :age, :rentals
 
+  @@id_counter = 0
+
   def initialize(age:, name: 'Unknown', parent_permission: true)
     super()
-    @id = nil
+    @id = @@id_counter
+    @@id_counter += 1
     @name = name
     @age = age
     @parent_permission = parent_permission
@@ -66,18 +69,17 @@ puts capitalized_person.correct_name
 capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
 puts capitalized_trimmed_person.correct_name
 
-class Student
-  attr_accessor :name
+class Student < Person
   attr_reader :classroom
 
-  def initialize(name)
-    @name = name
-    @classroom = nil
+  def initialize(age:, name:, classroom:, parent_permission: true)
+    super(age: age, name: name, parent_permission: parent_permission)
+    @classroom = classroom
   end
 
   def classroom=(classroom)
     @classroom = classroom
-    classroom.students.push(self) unless classroom.students.include?(self)
+    classroom.students.push(self) unless classroom.students include?(self)
   end
 end
 
@@ -118,20 +120,3 @@ class Rental
     @person = person
   end
 end
-
-classroom = Classroom.new('Room A')
-
-student1 = Student.new('Alice')
-student2 = Student.new('Bob')
-
-classroom.add_student(student1)
-classroom.add_student(student2)
-
-puts "Students in #{classroom.label}: #{classroom.students.map(&:name).join(', ')}"
-
-book1 = Book.new('100 años de soledad', 'Gabriel Garcia Marquez')
-person1 = Person.new(age: 30, name: 'Carlos')
-
-rental1 = Rental.new('2023-10-19', book1, person1)
-
-puts "#{person1.name} rented '#{book1.title}' on #{rental1.date}."
