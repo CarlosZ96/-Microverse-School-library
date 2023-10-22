@@ -1,3 +1,6 @@
+require_relative 'student'
+require_relative 'teacher'
+
 class Nameable
   def correct_name
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
@@ -79,7 +82,7 @@ class Student < Person
 
   def classroom=(classroom)
     @classroom = classroom
-    classroom.students.push(self) unless classroom.students include?(self)
+    classroom.students.push(self) unless classroom.students.include?(self)
   end
 end
 
