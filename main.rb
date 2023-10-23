@@ -8,9 +8,9 @@ class Person < Nameable
   attr_reader :id
   attr_accessor :name, :age, :rentals
 
-  def initialize(age:, name: 'Unknown', parent_permission: true)
+  def initialize(age, name = 'Unknown', parent_permission: true)
     super()
-    @id = nil
+    @id = rand(1..1000)
     @name = name
     @age = age
     @parent_permission = parent_permission
@@ -25,12 +25,20 @@ class Person < Nameable
     @name
   end
 
-  def add_rental(book, date)
-    Rental.new(date, book, self)
+  def add_rentals(book, date)
+    @rentals << Rental.new(date, book, self)
+  end
+
+  private
+
+  def of_age?
+    @age >= 18
   end
 end
 
 class BaseDecorator < Nameable
+  attr_accessor :nameable
+
   def initialize(nameable)
     super()
     @nameable = nameable
@@ -50,12 +58,7 @@ end
 
 class TrimmerDecorator < BaseDecorator
   def correct_name
-    original_name = @nameable.correct_name
-    if original_name.length > 10
-      original_name[0, 10]
-    else
-      original_name
-    end
+    @nameable.correct_name[0..9]
   end
 end
 
@@ -66,13 +69,16 @@ puts capitalized_person.correct_name
 capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
 puts capitalized_trimmed_person.correct_name
 
-class Student
-  attr_accessor :name
+class Student < Person
   attr_reader :classroom
 
-  def initialize(name)
-    @name = name
-    @classroom = nil
+  def initialize(age, name, classroom, parent_permission: true)
+    super(age, name, parent_permission: parent_permission)
+    @classroom = classroom
+  end
+
+  def play_hooky
+    '¯(ツ)/¯'
   end
 
   def classroom=(classroom)
@@ -82,7 +88,8 @@ class Student
 end
 
 class Classroom
-  attr_accessor :label, :students
+  attr_accessor :label
+  attr_reader :students
 
   def initialize(label)
     @label = label
@@ -92,6 +99,17 @@ class Classroom
   def add_student(student)
     @students << student
     student.classroom = self
+  end
+end
+
+class Teacher < Person
+  def initialize(age, name, specialization, parent_permission: true)
+    super(age, name, parent_permission: parent_permission)
+    @specialization = specialization
+  end
+
+  def can_use_services?
+    true
   end
 end
 
@@ -116,6 +134,9 @@ class Rental
     @date = date
     @book = book
     @person = person
+
+    book.rentals << self
+    person.rentals << self
   end
 end
 
