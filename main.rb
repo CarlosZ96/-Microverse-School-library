@@ -1,3 +1,5 @@
+require_relative 'app'
+
 class Nameable
   def correct_name
     raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
@@ -139,20 +141,3 @@ class Rental
     person.rentals << self
   end
 end
-
-classroom = Classroom.new('Room A')
-
-student1 = Student.new('Alice')
-student2 = Student.new('Bob')
-
-classroom.add_student(student1)
-classroom.add_student(student2)
-
-puts "Students in #{classroom.label}: #{classroom.students.map(&:name).join(', ')}"
-
-book1 = Book.new('100 años de soledad', 'Gabriel Garcia Marquez')
-person1 = Person.new(age: 30, name: 'Carlos')
-
-rental1 = Rental.new('2023-10-19', book1, person1)
-
-puts "#{person1.name} rented '#{book1.title}' on #{rental1.date}."
