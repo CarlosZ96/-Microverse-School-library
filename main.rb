@@ -1,5 +1,6 @@
 require_relative 'app'
 
+# Define una función que ejecuta la operación seleccionada por el usuario.
 def start_method(app, user_option)
   methods_list = {
     1 => :list_all_books,
@@ -13,6 +14,7 @@ def start_method(app, user_option)
   app.send(methods_list[user_option])
 end
 
+# Función principal que inicia la aplicación.
 def main
   app = App.new
   puts 'Welcome to School Library App!'
