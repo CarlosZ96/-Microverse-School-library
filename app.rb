@@ -69,7 +69,8 @@ class CapitalizeDecorator < BaseDecorator
   end
 end
 
-# Define una clase 'TrimmerDecorator' que hereda de 'BaseDecorator' y limita el nombre del objeto decorado a 10 caracteres.
+# Define una clase 'TrimmerDecorator' que hereda de 'BaseDecorator'
+#  y limita el nombre del objeto decorado a 10 caracteres.
 class TrimmerDecorator < BaseDecorator
   def correct_name
     @nameable.correct_name[0..9]
