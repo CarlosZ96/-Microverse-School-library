@@ -1,12 +1,6 @@
 require_relative 'main'
 
-class Nameable
-  def correct_name
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-  end
-end
-
-class Person < Nameable
+class Person
   attr_reader :id
   attr_accessor :name, :age, :rentals
 
@@ -35,32 +29,6 @@ class Person < Nameable
 
   def of_age?
     @age >= 18
-  end
-end
-
-class BaseDecorator < Nameable
-  attr_accessor :nameable
-
-  def initialize(nameable)
-    super()
-    @nameable = nameable
-  end
-
-  def correct_name
-    @nameable.correct_name
-  end
-end
-
-class CapitalizeDecorator < BaseDecorator
-  def correct_name
-    original_name = @nameable.correct_name
-    original_name.capitalize
-  end
-end
-
-class TrimmerDecorator < BaseDecorator
-  def correct_name
-    @nameable.correct_name[0..9]
   end
 end
 
