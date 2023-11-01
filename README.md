@@ -89,6 +89,12 @@ npm install
 - Twitter: [@twitterhandle](https://twitter.com/ELZambrano2)
 - LinkedIn: [@linkedinhandle](https://www.linkedin.com/in/carlos-zambrano-845406173/)
 
+👤 **Jose Luis Berbesi**
+
+- GitHub: [@githubhandle](https://github.com/jlberbesi)
+- Twitter: [@twitterhandle](https://twitter.com/imberbesi)
+- LinkedIn: [@linkedinhandle](https://www.linkedin.com/in/carlos-jlberbesi/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
