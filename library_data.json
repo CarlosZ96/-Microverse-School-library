@@ -1,0 +1,24 @@
+{
+  "books": [
+    {
+      "Book Title": "a",
+      "Author": "a"
+    }
+  ],
+  "people": [
+    {
+      "Name": "carlos",
+      "Age": 22,
+      "Type": "Student",
+      "Classroom": "22"
+    }
+  ],
+  "rentals": [
+    {
+      "Book Tittle": "a",
+      "Book Author": "a",
+      "who rents": "carlos",
+      "ID": 857
+    }
+  ]
+}
