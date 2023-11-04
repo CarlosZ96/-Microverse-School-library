@@ -1,6 +1,4 @@
-require_relative 'person'
 require_relative 'student'
-
 class Classroom
   attr_accessor :label
   attr_reader :students
@@ -11,7 +9,14 @@ class Classroom
   end
 
   def add_student(student)
-    @students << student
-    student.classroom = self
+    @students << student unless @students.include?(student)
+    student.classroom = self unless student.classroom == self
+  end
+
+  def to_hash
+    {
+      label: @label,
+      students: @students.map(&:id)
+    }
   end
 end
