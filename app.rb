@@ -4,7 +4,6 @@ require_relative 'person'
 require_relative 'rental'
 require_relative 'student'
 require_relative 'teacher'
-require 'json'
 
 class App
   attr_accessor :books, :people, :rentals
@@ -13,7 +12,6 @@ class App
     @books = []
     @people = []
     @rentals = []
-    load_data_from_json
   end
 
   def create_book
@@ -24,7 +22,6 @@ class App
     new_book = Book.new(book_title, book_author)
     @books << new_book
     puts 'Book created successfully'
-    save_data_to_json
   end
 
   def list_all_books
@@ -50,7 +47,6 @@ class App
       @people << new_teacher
     end
     puts 'Person created successfully'
-    save_data_to_json
   end
 
   def getting_name_age
@@ -82,7 +78,6 @@ class App
     rental_date = gets.chomp
     @rentals << Rental.new(rental_date, @books[book_index], @people[person_index])
     puts 'Rental created successfully'
-    save_data_to_json
   end
 
   def list_person_rental
@@ -93,66 +88,6 @@ class App
     rentals_result.each do |rental_result|
       puts "Date: #{rental_result.date}, Book \"#{rental_result.book.title}\" by #{rental_result.book.author}"
     end
-  end
-
-  def save_data_to_json
-    data = {
-      books: @books.map { |book| { 'Book Title' => book.title, 'Author' => book.author } },
-      people: @people.map { |person| person_data(person) },
-      rentals: @rentals.map { |rental| rental_data(rental) }
-    }
-
-    File.write('library_data.json', JSON.pretty_generate(data))
-    puts 'Data saved to library_data.json'
-  end
-
-  def person_data(person)
-    data = {
-      'Name' => person.name,
-      'Age' => person.age
-    }
-
-    if person.is_a?(Student)
-      data['Type'] = 'Student'
-      data['Classroom'] = person.classroom
-    elsif person.is_a?(Teacher)
-      data['Type'] = 'Teacher'
-      data['Specialization'] = person.specialization
-    end
-
-    data
-  end
-
-  def rental_data(rental)
-    {
-      'Book Tittle' => rental.book.title,
-      'Book Author' => rental.book.author,
-      'who rents' => rental.person.name,
-      'ID' => rental.person.id
-    }
-  end
-
-  def load_data_from_json
-    return unless File.exist?('library_data.json')
-
-    data = JSON.parse(File.read('library_data.json'))
-    @books = data['books'].map { |book_data| Book.new(book_data['Book Title'], book_data['Author']) }
-    @people = data['people'].map { |person_data| create_person_from_data(person_data) }
-    @rentals = data['rentals'].map { |rental_data| create_rental_from_data(rental_data) }
-  end
-
-  def create_person_from_data(person_data)
-    if person_data['Type'] == 'Student'
-      Student.new(person_data['Age'], person_data['Name'], person_data['Classroom'])
-    else
-      Teacher.new(person_data['Age'], person_data['Name'], person_data['Specialization'])
-    end
-  end
-
-  def create_rental_from_data(rental_data)
-    book = @books.find { |b| b.title == rental_data['Book Tittle'] && b.author == rental_data['Book Author'] }
-    person = @people.find { |p| p.name == rental_data['who rents'] && p.id == rental_data['ID'] }
-    Rental.new(rental_data['Date'], book, person)
   end
 end
 
