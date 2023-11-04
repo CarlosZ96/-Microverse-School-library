@@ -93,7 +93,7 @@ npm install
 
 - GitHub: [@githubhandle](https://github.com/jlberbesi)
 - Twitter: [@twitterhandle](https://twitter.com/imberbesi)
-- LinkedIn: [@linkedinhandle](https://www.linkedin.com/in/carlos-jlberbesi/)
+- LinkedIn: [@linkedinhandle](https://www.linkedin.com/in/jlberbesi/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
