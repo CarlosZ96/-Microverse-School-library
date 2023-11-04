@@ -1,6 +1,6 @@
-require_relative ‘rental’
-require_relative ‘person’
-require_relative ‘book’
+require_relative 'rental'
+require_relative 'person'
+require_relative 'book'
 describe Rental do
   let(:person) { Person.new(22, 'Max Mustermann') }
   let(:book) { Book.new('The Pragmatic Programmer', 'Andy Hunt & Dave Thomas') }
