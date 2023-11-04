@@ -6,11 +6,13 @@ require_relative 'student'
 require_relative 'teacher'
 class App
   attr_accessor :books, :people, :rentals
+
   def initialize
     @books = []
     @people = []
     @rentals = []
   end
+
   def create_book
     print 'Title: '
     book_title = gets.chomp
@@ -20,9 +22,11 @@ class App
     @books << new_book
     puts 'Book created successfully'
   end
+
   def list_all_books
     @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
   end
+
   def create_person
     puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     person_class = gets.chomp
@@ -43,6 +47,7 @@ class App
     end
     puts 'Person created successfully'
   end
+
   def getting_name_age
     common_arr = []
     print 'Age: '
@@ -52,11 +57,13 @@ class App
     common_arr << person_age
     common_arr << person_name
   end
+
   def list_all_people
     @people.each do |person_item|
       puts "[#{person_item.class}] Name: #{person_item.name}, ID: #{person_item.id}, Age: #{person_item.age}"
     end
   end
+
   def create_rental
     puts 'Select a book from the following list by number'
     @books.each_with_index { |book, index| puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}" }
@@ -71,12 +78,13 @@ class App
     @rentals << Rental.new(rental_date, @books[book_index], @people[person_index])
     puts 'Rental created successfully'
   end
+
   def list_person_rental
     print 'ID of person: '
     person_id = gets.chomp.to_i
     rentals_result = @rentals.select { |rental_item| rental_item.person.id == person_id }
     if rentals_result.empty?
-      puts "No rentals found for the given person ID."
+      puts 'No rentals found for the given person ID.'
     else
       puts 'Rentals:'
       rentals_result.each do |rental_result|
@@ -84,49 +92,74 @@ class App
       end
     end
   end
+
   def save_books
     File.write('books.json', JSON.pretty_generate(@books.map(&:to_hash)))
   end
+
   def save_people
     data = @people.map(&:to_hash)
     File.write('people.json', JSON.generate(data))
   end
+
   def save_rentals
     File.write('rentals.json', JSON.pretty_generate(@rentals.map(&:to_hash)))
   end
+
   def load_books
     return unless File.exist?('books.json')
+
     JSON.parse(File.read('books.json')).each do |book_data|
       @books << Book.new(book_data['title'], book_data['author'])
     end
   end
+
   def load_people
     return unless File.exist?('people.json')
+
     JSON.parse(File.read('people.json')).each do |person_data|
-      case person_data['type']
-      when 'Student'
-        @people << Student.new(person_data['age'], person_data['name'], person_data['classroom'], parent_permission: person_data['parent_permission'], id: person_data['id'])
-      when 'Teacher'
-        @people << Teacher.new(person_data['age'], person_data['name'], person_data['specialization'], parent_permission: person_data['parent_permission'], id: person_data['id'])
-      else
-        @people << Person.new(person_data['age'], person_data['name'], parent_permission: person_data['parent_permission'], id: person_data['id'])
-      end
+      @people << case person_data['type']
+                 when 'Student'
+                   Student.new(person_data['age'], person_data['name'], person_data['classroom'],
+                               parent_permission: person_data['parent_permission'], id: person_data['id'])
+                 when 'Teacher'
+                   Teacher.new(person_data['age'], person_data['name'], person_data['specialization'],
+                               parent_permission: person_data['parent_permission'], id: person_data['id'])
+                 else
+                   Person.new(person_data['age'], person_data['name'],
+                              parent_permission: person_data['parent_permission'], id: person_data['id'])
+                 end
     end
   end
+
   def load_rentals
-    begin
-      return unless File.exist?('rentals.json')
-      rental_data = JSON.parse(File.read('rentals.json'))
-      rental_data.each do |rental|
-        book = @books.find { |b| b.title == rental['book'] }
-        person = @people.find { |p| p.id == rental['person_id'].to_i }
-        @rentals << Rental.new(rental['date'], book, person) if book && person
-      end
-    rescue => e
-      puts "An error occurred while loading rentals: #{e.message}"
-    end
+    return unless File.exist?('rentals.json')
+
+    rental_data = JSON.parse(File.read('rentals.json'))
+    rental_data.each { |rental| process_rental_data(rental) }
+  end
+
+  private
+
+  def process_rental_data(rental)
+    book = find_book_by_title(rental['book'])
+    person = find_person_by_id(rental['person_id'].to_i)
+    add_rental(rental['date'], book, person) if book && person
+  end
+
+  def find_book_by_title(title)
+    @books.find { |b| b.title == title }
+  end
+
+  def find_person_by_id(id)
+    @people.find { |p| p.id == id }
+  end
+
+  def add_rental(date, book, person)
+    @rentals << Rental.new(date, book, person)
   end
 end
+
 def present_options
   puts "\nPlease choose an option by entering a number:"
   puts '1 - List all books'
