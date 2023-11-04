@@ -14,9 +14,10 @@ def start_method(app, option)
   when 6
     app.list_person_rental
   else
-    puts "Option not recognized."
+    puts 'Option not recognized.'
   end
 end
+
 def present_options
   puts "\nPlease choose an option by entering a number:"
   puts '1 - List all books'
@@ -28,6 +29,7 @@ def present_options
   puts '7 - Exit'
   gets.chomp.to_i
 end
+
 def main
   app = App.new
   app.load_books
@@ -37,6 +39,7 @@ def main
   loop do
     option = present_options
     break if option == 7
+
     start_method(app, option)
   end
   app.save_books
