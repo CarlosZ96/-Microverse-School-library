@@ -21,4 +21,13 @@ describe Rental do
       expect(person.rentals).to include(rental)
     end
   end
+  describe '#to_hash' do
+    it 'returns a hash with the rental details' do
+      hash = rental.to_hash
+      expect(hash).to be_a(Hash)
+      expect(hash[:date]).to eq('2023-04-01')
+      expect(hash[:book]).to eq(book.title)
+      expect(hash[:person_id]).to eq(person.id)
+    end
+  end
 end
