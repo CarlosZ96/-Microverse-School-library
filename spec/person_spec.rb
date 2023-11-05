@@ -57,13 +57,13 @@ describe Person do
         expect(@person.can_use_services?).to be true
       end
     end
-  
+
     context 'when person is underage and does not have parent permission' do
       before do
         underage_person_without_permission = Person.new(14, 'John Doe', parent_permission: false)
         @person = underage_person_without_permission
       end
-  
+
       it 'returns false' do
         expect(@person.can_use_services?).to be false
       end
