@@ -1,10 +1,8 @@
 require_relative 'rental'
-require_relative 'nameable'
-class Person < Nameable
+class Person
   attr_reader :id, :name, :age, :rentals
 
   def initialize(age, name = 'Unknown', parent_permission: true, id: nil)
-    super()
     @id = id || rand(1..1000)
     @name = name
     @age = age
