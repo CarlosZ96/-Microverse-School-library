@@ -1,7 +1,6 @@
 require_relative '../nameable'
 require_relative '../basedecorator'
 
-
 describe BaseDecorator do
   let(:nameable) { instance_double('Nameable', correct_name: 'john doe') }
   subject { BaseDecorator.new(nameable) }
