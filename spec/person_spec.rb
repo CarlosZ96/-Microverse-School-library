@@ -41,4 +41,14 @@ describe Person do
       expect(rental.person).to be @person
     end
   end
+  describe '#to_hash' do
+    it 'returns a hash with person details' do
+      hash = @person.to_hash
+      expect(hash).to be_a(Hash)
+      expect(hash[:id]).to eq(@person.id)
+      expect(hash[:name]).to eq('John Doe')
+      expect(hash[:age]).to eq(24)
+      expect(hash[:parent_permission]).to eq(true)
+    end
+  end
 end

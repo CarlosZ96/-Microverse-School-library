@@ -23,4 +23,14 @@ describe Classroom do
       expect(classroom.students.size).to eq 1
     end
   end
+  describe '#to_hash' do
+    it 'returns a hash with classroom label and students' do
+      classroom.add_student(student)
+      hash = classroom.to_hash
+      expect(hash).to be_a(Hash)
+      expect(hash[:label]).to eq 'Programming 101'
+      expect(hash[:students]).to be_an(Array)
+      expect(hash[:students].first).to eq student.id
+    end
+  end
 end

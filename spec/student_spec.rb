@@ -23,4 +23,15 @@ describe Student do
       expect(student.classroom.students).to include(student)
     end
   end
+  describe '#to_hash' do
+    it 'returns a hash with student details and classroom label' do
+      hash = student.to_hash
+      expect(hash).to be_a(Hash)
+      expect(hash[:id]).to eq(student.id)
+      expect(hash[:name]).to eq('John Doe')
+      expect(hash[:age]).to eq(18)
+      expect(hash[:classroom]).to eq('Programming 101')
+      expect(hash[:type]).to eq('Student')
+    end
+  end
 end

@@ -35,4 +35,12 @@ describe Book do
       end.to change { @book.rentals.length }.by(2)
     end
   end
+  describe '#to_hash' do
+    it 'returns a hash of book properties' do
+      hash = @book.to_hash
+      expect(hash).to be_a(Hash)
+      expect(hash[:title]).to eq('1984')
+      expect(hash[:author]).to eq('George Orwell')
+    end
+  end
 end

@@ -14,4 +14,15 @@ describe Teacher do
       expect(teacher.can_use_services?).to be true
     end
   end
+  describe '#to_hash' do
+    it 'returns a hash with teacher details and specialization' do
+      hash = teacher.to_hash
+      expect(hash).to be_a(Hash)
+      expect(hash[:id]).to eq(teacher.id)
+      expect(hash[:name]).to eq('Jane Doe')
+      expect(hash[:age]).to eq(40)
+      expect(hash[:specialization]).to eq('Mathematics')
+      expect(hash[:type]).to eq('Teacher')
+    end
+  end
 end
