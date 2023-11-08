@@ -14,8 +14,8 @@ class Person
     of_age? || @parent_permission
   end
 
-  def add_rentals(book, date)
-    @rentals << Rental.new(date, book, self)
+  def add_rental(date, book)
+    Rental.new(date, book, self)
   end
 
   def to_hash
